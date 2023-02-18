@@ -9,9 +9,13 @@
 
   const MeqBudget = derived(
     state,
-    ($state) => {console.log($state); return [0, 1, 2, 3, 5, 7, 9, 11][$state.playercount]}
+    ($state) => [0, 1, 2, 3, 5, 7, 9, 11][$state.playercount]
   );
-  console.log(MeqBudget)
+
+  const parLevel = derived(
+    state,
+    ({level}) => level < 5 ? level : level < 8 ? level+1 : level + 2
+  )
 </script>
 
 <main class="container">
@@ -45,6 +49,45 @@
         <th>3x/huge/15 mooks</th>
       </tr>
     </thead>
-    <tbody />
+    <tbody>
+      <tr>
+        <td>{$parLevel-2}</td>
+        <td>0.5</td>
+        <td>0.7</td>
+        <td>1</td>
+        <td>1.5</td>
+      </tr>
+      <tr>
+        <td>{$parLevel-1}</td>
+        <td>0.7</td>
+        <td>1</td>
+        <td>1.5</td>
+        <td>2</td>
+      </tr>
+      <tr>
+        <td><strong>{$parLevel}</strong></td>
+        <td><strong>1</strong></td>
+        <td><strong>1.5</strong></td>
+        <td><strong>2</strong></td>
+        <td><strong>3</strong></td>
+      </tr>
+      <tr>
+        <td>{$parLevel+1}</td>
+        <td>1.5</td>
+        <td>2*</td>
+        <td>3*</td>
+        <td>4*</td>
+      </tr>
+      <tr>
+        <td>{$parLevel+2}</td>
+        <td>2*</td>
+        <td>3**</td>
+        <td>4**</td>
+        <td>6**</td>
+      </tr>
+    </tbody>
   </table>
+
+  <p>* Be careful. A monster like this might pack an uncomfortable amount of damage into a single swing.</p>
+  <p>** Probably a mistake to build a battle around monsters that dish out damage like these do.</p>
 </main>
