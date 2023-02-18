@@ -1,4 +1,11 @@
 <script lang="ts">
+  import { writable } from 'svelte/store';
+
+  const state = writable({
+    playercount: 3,
+    level: 1,
+    battlecount: 4,
+  })
 </script>
 
 <main class="container">
@@ -9,7 +16,7 @@
       <label for="playercount">I have this many players:</label>
     </div>
     <div class="column">
-      <input type="number" name="playercount" />
+      <input type="number" name="playercount" bind:value={$state.playercount} />
     </div>
   </div>
 
@@ -18,7 +25,7 @@
       <label for="level">They are this level:</label>
     </div>
     <div class="column">
-      <input type="number" name="level" />
+      <input type="number" name="level" bind:value={$state.level} />
     </div>
   </div>
 
@@ -27,7 +34,7 @@
       <label for="battlecount">I'll be running this many battles today:</label>
     </div>
     <div class="column">
-      <input type="number" name="battlecount" />
+      <input type="number" name="battlecount" bind:value={$state.battlecount} />
     </div>
   </div>
 
@@ -44,8 +51,6 @@
         <th>3x/huge/15 mooks</th>
       </tr>
     </thead>
-    <tbody>
-
-    </tbody>
+    <tbody />
   </table>
 </main>
