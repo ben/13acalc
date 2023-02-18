@@ -24,15 +24,15 @@
   <div class="row">
     <div class="column column-33">
       <label for="playercount">I have this many players:</label>
-      <input type="number" name="playercount" bind:value={$state.playercount} />
+      {$state.playercount} <input type=range min=1 max=7 bind:value={$state.playercount} />
     </div>
     <div class="column column-33">
       <label for="level">They are this level:</label>
-      <input type="number" name="level" bind:value={$state.level} />
+      {$state.level} <input type=range min=1 max=10 bind:value={$state.level} />
     </div>
     <div class="column column-33">
       <label for="battlecount">I'll be running this many battles today:</label>
-      <input type="number" name="battlecount" bind:value={$state.battlecount} />
+      3 <input type=range min=3 max=4 bind:value={$state.battlecount} /> 4
     </div>
   </div>
 
