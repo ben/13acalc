@@ -1,46 +1,51 @@
 <script lang="ts">
-  import svelteLogo from './assets/svelte.svg'
-  import Counter from './lib/Counter.svelte'
 </script>
 
-<main>
-  <div>
-    <a href="https://vitejs.dev" target="_blank" rel="noreferrer"> 
-      <img src="/vite.svg" class="logo" alt="Vite Logo" />
-    </a>
-    <a href="https://svelte.dev" target="_blank" rel="noreferrer"> 
-      <img src={svelteLogo} class="logo svelte" alt="Svelte Logo" />
-    </a>
-  </div>
-  <h1>Vite + Svelte</h1>
+<main class="container">
+  <h1>13th Age Battle Calculator</h1>
 
-  <div class="card">
-    <Counter />
+  <div class="row">
+    <div class="column column-75">
+      <label for="playercount">I have this many players:</label>
+    </div>
+    <div class="column">
+      <input type="number" name="playercount" />
+    </div>
   </div>
 
-  <p>
-    Check out <a href="https://github.com/sveltejs/kit#readme" target="_blank" rel="noreferrer">SvelteKit</a>, the official Svelte app framework powered by Vite!
-  </p>
+  <div class="row">
+    <div class="column column-75">
+      <label for="level">They are this level:</label>
+    </div>
+    <div class="column">
+      <input type="number" name="level" />
+    </div>
+  </div>
 
-  <p class="read-the-docs">
-    Click on the Vite and Svelte logos to learn more
-  </p>
+  <div class="row">
+    <div class="column column-75">
+      <label for="battlecount">I'll be running this many battles today:</label>
+    </div>
+    <div class="column">
+      <input type="number" name="battlecount" />
+    </div>
+  </div>
+
+  <h2>Results</h2>
+  <p>My MEQ budget is: <strong>NNN</strong></p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Monster level</th>
+        <th>Standard/5 mooks</th>
+        <th>Elite/7-8 mooks</th>
+        <th>2x/large/10 mooks</th>
+        <th>3x/huge/15 mooks</th>
+      </tr>
+    </thead>
+    <tbody>
+
+    </tbody>
+  </table>
 </main>
-
-<style>
-  .logo {
-    height: 6em;
-    padding: 1.5em;
-    will-change: filter;
-    transition: filter 300ms;
-  }
-  .logo:hover {
-    filter: drop-shadow(0 0 2em #646cffaa);
-  }
-  .logo.svelte:hover {
-    filter: drop-shadow(0 0 2em #ff3e00aa);
-  }
-  .read-the-docs {
-    color: #888;
-  }
-</style>
