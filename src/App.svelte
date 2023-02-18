@@ -1,11 +1,17 @@
 <script lang="ts">
-  import { writable } from 'svelte/store';
+  import { derived, writable } from "svelte/store";
 
   const state = writable({
     playercount: 3,
     level: 1,
     battlecount: 4,
-  })
+  });
+
+  const MeqBudget = derived(
+    state,
+    ($state) => {console.log($state); return [0, 1, 2, 3, 5, 7, 9, 11][$state.playercount]}
+  );
+  console.log(MeqBudget)
 </script>
 
 <main class="container">
@@ -27,7 +33,7 @@
   </div>
 
   <h2>Results</h2>
-  <p>My MEQ budget is: <strong>NNN</strong></p>
+  <p>My budget is <strong>{$MeqBudget} MEQ.</strong></p>
 
   <table>
     <thead>
