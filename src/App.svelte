@@ -12,6 +12,18 @@
     ($state) => [0, 1, 2, 3, 5, 7, 9, 11][$state.playercount]
   );
 
+  const MookFactor = derived(
+    state,
+    ($state) => [0, 3, 3, 4, 4, 5, 5, 5, 5, 5, 5][$state.level]
+  );
+
+  const EliteMookFactor = derived(MookFactor, ($MookFactor) => {
+    const base = $MookFactor * 1.5;
+    const low = Math.floor(base);
+    const high = Math.ceil(base);
+    return low === high ? low : `${low}-${high}`
+  });
+
   const parLevel = derived(state, ({ level, battlecount }) => {
     const base = level < 5 ? level : level < 8 ? level + 1 : level + 2;
     return battlecount === 3 ? base + 1 : base;
@@ -24,15 +36,17 @@
   <div class="row">
     <div class="column column-33">
       <label for="playercount">I have this many players:</label>
-      {$state.playercount} <input type=range min=1 max=7 bind:value={$state.playercount} />
+      {$state.playercount}
+      <input type="range" min="1" max="7" bind:value={$state.playercount} />
     </div>
     <div class="column column-33">
       <label for="level">They are this level:</label>
-      {$state.level} <input type=range min=1 max=10 bind:value={$state.level} />
+      {$state.level}
+      <input type="range" min="1" max="10" bind:value={$state.level} />
     </div>
     <div class="column column-33">
       <label for="battlecount">I'll be running this many battles today:</label>
-      3 <input type=range min=3 max=4 bind:value={$state.battlecount} /> 4
+      3 <input type="range" min="3" max="4" bind:value={$state.battlecount} /> 4
     </div>
   </div>
 
@@ -43,10 +57,10 @@
     <thead>
       <tr>
         <th>Monster level</th>
-        <th>Standard/5 mooks</th>
-        <th>Elite/7-8 mooks</th>
-        <th>2x/large/10 mooks</th>
-        <th>3x/huge/15 mooks</th>
+        <th>Standard / {$MookFactor} mooks</th>
+        <th>Elite / {$EliteMookFactor} mooks</th>
+        <th>2x / large / {$MookFactor * 2} mooks</th>
+        <th>3x / huge / {$MookFactor * 3} mooks</th>
       </tr>
     </thead>
     <tbody>
